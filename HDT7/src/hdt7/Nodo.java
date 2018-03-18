@@ -11,24 +11,14 @@ package hdt7;
  */
 public class Nodo<E> {
 
-    private Nodo<E> padre;
     private Nodo<E> izquierda;
     private Nodo<E> derecha;
     private E valor;
 
-    public Nodo(Nodo<E> padre, E valor) {
-        this.padre = padre;
+    public Nodo(E valor) {
         this.izquierda = null;
         this.derecha = null;
         this.valor = valor;
-    }
-
-    public Nodo<E> getPadre() {
-        return padre;
-    }
-
-    public void setPadre(Nodo<E> padre) {
-        this.padre = padre;
     }
 
     public Nodo<E> getIzquierda() {
