@@ -14,20 +14,20 @@ import java.util.regex.Pattern;
  * @author paulb
  */
 public class Diccionario {
-   private Nodo<String> raiz  ;
+   private Nodo raiz  ;
 
-    public Nodo<String> getRaiz() {
+    public Nodo getRaiz() {
         return raiz;
     }
 
-    public void setRaiz(Nodo<String> raiz) {
+    public void setRaiz(Nodo raiz) {
         this.raiz = raiz;
     }
    
    public Diccionario(){
        raiz = llenar("./diccionario.txt");
    }
-   public Nodo insertar(String valor, Nodo<String> nodo){
+   public Nodo insertar(String valor, Nodo nodo){
        if (nodo == null){
            nodo = new Nodo(valor);
        } else {
@@ -44,10 +44,17 @@ public class Diccionario {
        return nodo;
    }
    
-   public String Buscar(String palabra){
-       Map mapa = coleccion(new TreeMap<String,String>(),raiz);
-       if (mapa.containsKey(palabra)) return mapa.get(palabra).toString();
-       else return "*"+palabra+"*";
+   public String Buscar(String palabra,Nodo nodo){
+       String s = nodo.getValor().key.toString();
+       if (s.compareTo(palabra) == 0) {
+           return nodo.getValor().value.toString();
+       } else {
+          if ((s.compareTo(palabra) < 0) && (nodo.getDerecha() != null)) {
+            return  Buscar(palabra,nodo.getDerecha());
+          } else if (nodo.getIzquierda() != null) {
+            return  Buscar(palabra,nodo.getIzquierda());
+          } else return "*"+palabra+"*";
+       }
    }
    public Map<String,String> coleccion(Map<String,String> mapa,Nodo<String> nodo){
        if (nodo.getIzquierda() != null) mapa = coleccion(mapa,nodo.getIzquierda());

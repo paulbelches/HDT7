@@ -26,8 +26,9 @@ public class HDT7 {
             System.out.println("(" + entry.getKey() + "," + entry.getValue() + ")");
         }
         //Buscar
-        System.out.println(diccionario.Buscar("Dog"));
-        System.out.println(diccionario.Buscar("yes"));
+        System.out.println(diccionario.Buscar("Dog", diccionario.getRaiz()));
+        System.out.println(diccionario.Buscar("yes", diccionario.getRaiz()));
+        System.out.println(diccionario.Buscar("dog", diccionario.getRaiz()));
         System.out.println("hola");
     }
     
