@@ -32,10 +32,10 @@ public class Diccionario {
            nodo = new Nodo(valor);
        } else {
             String sep = Pattern.quote(",");
-            String[] partes1 = nodo.getValor().split(sep);
             String[] partes2 = valor.split(sep);
+            String s = nodo.getValor().key.toString();
            //Revisar si el valor es mayor
-           if (partes1[0].compareTo(partes2[0]) < 0) {
+           if (s.compareTo(partes2[0]) < 0) {
                nodo.setDerecha(insertar(valor,nodo.getDerecha()));
            } else {
                nodo.setIzquierda(insertar(valor,nodo.getIzquierda()));
@@ -43,6 +43,7 @@ public class Diccionario {
        }
        return nodo;
    }
+   
    public String Buscar(String palabra){
        Map mapa = coleccion(new TreeMap<String,String>(),raiz);
        if (mapa.containsKey(palabra)) return mapa.get(palabra).toString();
@@ -50,12 +51,11 @@ public class Diccionario {
    }
    public Map<String,String> coleccion(Map<String,String> mapa,Nodo<String> nodo){
        if (nodo.getIzquierda() != null) mapa = coleccion(mapa,nodo.getIzquierda());
-       String sep = Pattern.quote(",");
-       String[] partes = nodo.getValor().split(sep);
-       mapa.put(partes[0], partes[1]);
+       mapa.put(nodo.getValor().getKey().toString(),nodo.getValor().getValue().toString());
        if (nodo.getDerecha() != null) mapa = coleccion(mapa,nodo.getDerecha());
        return mapa;
    }
+
    public Nodo llenar(String cadena) {
         File f;
         FileReader fr;

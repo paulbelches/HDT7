@@ -28,7 +28,7 @@ public class HDT7 {
         //Buscar
         System.out.println(diccionario.Buscar("Dog"));
         System.out.println(diccionario.Buscar("yes"));
- 
+        System.out.println("hola");
     }
     
 }

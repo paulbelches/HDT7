@@ -5,6 +5,8 @@
  */
 package hdt7;
 
+import java.util.regex.Pattern;
+
 /**
  *
  * @author paulb
@@ -13,12 +15,14 @@ public class Nodo<E> {
 
     private Nodo<E> izquierda;
     private Nodo<E> derecha;
-    private E valor;
+    private Association<String,String> valor;
 
-    public Nodo(E valor) {
+    public Nodo(String valor) {
+        String sep = Pattern.quote(",");
+        String[] partes = valor.split(sep);
         this.izquierda = null;
         this.derecha = null;
-        this.valor = valor;
+        this.valor = new Association(partes[0], partes[1]);
     }
 
     public Nodo<E> getIzquierda() {
@@ -37,11 +41,11 @@ public class Nodo<E> {
         this.derecha = derecha;
     }
 
-    public E getValor() {
+    public Association  getValor() {
         return valor;
     }
 
-    public void setValor(E valor) {
+    public void setValor(Association  valor) {
         this.valor = valor;
     }
 
