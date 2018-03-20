@@ -4,94 +4,103 @@
  * and open the template in the editor.
  */
 package hdt7;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.*;
 import java.util.regex.Pattern;
+
 /**
- *
- * @author paulb
+ * Diccionario
+ * 
+ * @author Paul Belches 17088
+ * @author Javier Anleu 17149
  */
 public class Diccionario {
-   private Nodo raiz  ;
+	private Nodo raiz;
 
-    public Nodo getRaiz() {
-        return raiz;
-    }
+	public Nodo getRaiz() {
+		return raiz;
+	}
 
-    public void setRaiz(Nodo raiz) {
-        this.raiz = raiz;
-    }
-   
-   public Diccionario(){
-       raiz = llenar("./diccionario.txt");
-   }
-   public Nodo insertar(String valor, Nodo nodo){
-       if (nodo == null){
-           nodo = new Nodo(valor);
-       } else {
-            String sep = Pattern.quote(",");
-            String[] partes2 = valor.split(sep);
-            String s = nodo.getValor().key.toString();
-           //Revisar si el valor es mayor
-           if (s.compareTo(partes2[0]) < 0) {
-               nodo.setDerecha(insertar(valor,nodo.getDerecha()));
-           } else {
-               nodo.setIzquierda(insertar(valor,nodo.getIzquierda()));
-           }
-       }
-       return nodo;
-   }
-   
-   public String Buscar(String palabra,Nodo nodo){
-       String s = nodo.getValor().key.toString();
-       if (s.compareTo(palabra) == 0) {
-           return nodo.getValor().value.toString();
-       } else {
-          if ((s.compareTo(palabra) < 0) && (nodo.getDerecha() != null)) {
-            return  Buscar(palabra,nodo.getDerecha());
-          } else if (nodo.getIzquierda() != null) {
-            return  Buscar(palabra,nodo.getIzquierda());
-          } else return "*"+palabra+"*";
-       }
-   }
-   public Map<String,String> coleccion(Map<String,String> mapa,Nodo<String> nodo){
-       if (nodo.getIzquierda() != null) mapa = coleccion(mapa,nodo.getIzquierda());
-       mapa.put(nodo.getValor().getKey().toString(),nodo.getValor().getValue().toString());
-       if (nodo.getDerecha() != null) mapa = coleccion(mapa,nodo.getDerecha());
-       return mapa;
-   }
+	public void setRaiz(Nodo raiz) {
+		this.raiz = raiz;
+	}
 
-   public Nodo llenar(String cadena) {
-        File f;
-        FileReader fr;
-        BufferedReader br;
-        Nodo nodo = null;
-        try {
+	public Diccionario() {
+		raiz = llenar("./diccionario.txt");
+	}
 
-            f = new File (cadena);            
-            fr = new FileReader(f);
-            br = new BufferedReader(fr);      
-            String linea;
+	public Nodo<String> insertar(String valor, Nodo<Association<String, String>> nodo) {
+		if (nodo == null) {
+			nodo = new Nodo<Association<String, String>>(valor);
+		} else {
+			String sep = Pattern.quote(",");
+			String[] partes2 = valor.split(sep);
+			String s = nodo.getValor().key.toString();
+			// Revisar si el valor es mayor
+			if (s.compareTo(partes2[0]) < 0) {
+				nodo.setDerecha(insertar(valor, nodo.getDerecha()));
+			} else {
+				nodo.setIzquierda(insertar(valor, nodo.getIzquierda()));
+			}
+		}
+		return nodo;
+	}
 
-            while( (linea = br.readLine()) != null) {
-                ;
-                linea =  linea.substring(linea.indexOf('(')+1,linea.indexOf(')'));
-                nodo = insertar(linea,nodo);
-            }                                            
-            br.close();
-            fr.close();
+	public String Buscar(String palabra, Nodo nodo) {
+		String s = nodo.getValor().key.toString();
+		if (s.compareTo(palabra) == 0) {
+			return nodo.getValor().value.toString();
+		} else {
+			if ((s.compareTo(palabra) < 0) && (nodo.getDerecha() != null)) {
+				return Buscar(palabra, nodo.getDerecha());
+			} else if (nodo.getIzquierda() != null) {
+				return Buscar(palabra, nodo.getIzquierda());
+			} else
+				return "*" + palabra + "*";
+		}
+	}
 
-        }
-        //Si el archivo se modifica manualmente o sucede cualquier otros tipo de
-        //error, este sera comunicado con el usuario
-        catch (Exception e) {
+	public Map<String, String> coleccion(Map<String, String> mapa, Nodo<String> nodo) {
+		if (nodo.getIzquierda() != null)
+			mapa = coleccion(mapa, nodo.getIzquierda());
+		mapa.put(nodo.getValor().getKey().toString(), nodo.getValor().getValue().toString());
+		if (nodo.getDerecha() != null)
+			mapa = coleccion(mapa, nodo.getDerecha());
+		return mapa;
+	}
 
-            System.err.println("Se produjo un error: " + e);                 
+	public Nodo llenar(String cadena) {
+		File f;
+		FileReader fr;
+		BufferedReader br;
+		Nodo nodo = null;
+		try {
 
-        }                
-        return nodo;
-    }
-   
+			f = new File(cadena);
+			fr = new FileReader(f);
+			br = new BufferedReader(fr);
+			String linea;
+
+			while ((linea = br.readLine()) != null) {
+				;
+				linea = linea.substring(linea.indexOf('(') + 1, linea.indexOf(')'));
+				nodo = insertar(linea, nodo);
+			}
+			br.close();
+			fr.close();
+
+		}
+		// Si el archivo se modifica manualmente o sucede cualquier otros tipo de
+		// error, este sera comunicado con el usuario
+		catch (Exception e) {
+
+			System.err.println("Se produjo un error:" + e);
+
+		}
+		return nodo;
+	}
+
 }

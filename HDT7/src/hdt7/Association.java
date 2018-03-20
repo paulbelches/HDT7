@@ -8,29 +8,33 @@ package hdt7;
 import java.util.Map;
 
 /**
- *
- * @author paulb
+ * Clase Association
+ * 
+ * @author Paul Belches 17088
+ * @author Javier Anleu 17149
+ * 
  */
-public class Association<K,V> implements Map.Entry<K,V> {
-    protected K key;
-    protected V value;
-    public Association(K key, V value){
-        this.key = key;
-        this.value = value;
-    }
+public class Association<K, V> implements Map.Entry<K, V> {
+	protected K key;
+	protected V value;
 
-    @Override
-    public K getKey() {
-        return key; //To change body of generated methods, choose Tools | Templates.
-    }
+	public Association(K key, V value) {
+		this.key = key;
+		this.value = value;
+	}
 
-    @Override
-    public V getValue() {
-        return value; //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public K getKey() {
+		return key; // To change body of generated methods, choose Tools | Templates.
+	}
 
-    @Override
-    public V setValue(V value) {
-       return this.value = value;//To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public V getValue() {
+		return value; // To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public V setValue(V value) {
+		return this.value = value;// To change body of generated methods, choose Tools | Templates.
+	}
 }
