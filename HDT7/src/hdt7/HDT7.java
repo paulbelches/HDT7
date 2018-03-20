@@ -10,8 +10,10 @@ import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 /**
- *
- * @author paulb
+ * @Date 19/03/18
+ * @author Javier Anleu
+ * @author Paul Belches
+ * 
  */
 public class HDT7 {
 
@@ -29,7 +31,6 @@ public class HDT7 {
         System.out.println(diccionario.Buscar("Dog", diccionario.getRaiz()));
         System.out.println(diccionario.Buscar("yes", diccionario.getRaiz()));
         System.out.println(diccionario.Buscar("dog", diccionario.getRaiz()));
-        System.out.println("hola");
     }
     
 }

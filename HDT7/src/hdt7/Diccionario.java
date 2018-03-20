@@ -10,24 +10,44 @@ import java.io.FileReader;
 import java.util.*;
 import java.util.regex.Pattern;
 /**
- *
- * @author paulb
+ * @Date 19/03/18
+ * @author Javier Anleu
+ * @author Paul Belches
+ * 
  */
 public class Diccionario {
    private Nodo raiz  ;
 
+    /**
+     *
+     * @return
+     */
     public Nodo getRaiz() {
         return raiz;
     }
 
+    /**
+     *
+     * @param raiz
+     */
     public void setRaiz(Nodo raiz) {
         this.raiz = raiz;
     }
    
-   public Diccionario(){
+    /**
+     *
+     */
+    public Diccionario(){
        raiz = llenar("./diccionario.txt");
    }
-   public Nodo insertar(String valor, Nodo nodo){
+
+    /**
+     *Método para insetar
+     * @param valor
+     * @param nodo
+     * @return
+     */
+    public Nodo insertar(String valor, Nodo nodo){
        if (nodo == null){
            nodo = new Nodo(valor);
        } else {
@@ -44,7 +64,13 @@ public class Diccionario {
        return nodo;
    }
    
-   public String Buscar(String palabra,Nodo nodo){
+    /**Método para buscar
+     *
+     * @param palabra
+     * @param nodo
+     * @return
+     */
+    public String Buscar(String palabra,Nodo nodo){
        String s = nodo.getValor().key.toString();
        if (s.compareTo(palabra) == 0) {
            return nodo.getValor().value.toString();
@@ -56,14 +82,26 @@ public class Diccionario {
           } else return "*"+palabra+"*";
        }
    }
-   public Map<String,String> coleccion(Map<String,String> mapa,Nodo<String> nodo){
+
+    /**Método que devuelve la colecion 
+     *
+     * @param mapa
+     * @param nodo
+     * @return
+     */
+    public Map<String,String> coleccion(Map<String,String> mapa,Nodo<String> nodo){
        if (nodo.getIzquierda() != null) mapa = coleccion(mapa,nodo.getIzquierda());
        mapa.put(nodo.getValor().getKey().toString(),nodo.getValor().getValue().toString());
        if (nodo.getDerecha() != null) mapa = coleccion(mapa,nodo.getDerecha());
        return mapa;
    }
 
-   public Nodo llenar(String cadena) {
+    /**Método para llenar el mapa
+     *
+     * @param cadena
+     * @return
+     */
+    public Nodo llenar(String cadena) {
         File f;
         FileReader fr;
         BufferedReader br;
