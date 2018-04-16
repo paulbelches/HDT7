@@ -7,53 +7,8 @@ package hdt7;
 
 import java.util.regex.Pattern;
 
+
 /**
-<<<<<<< HEAD
- * Nodo
- * 
- * @author Paul Belches 17088
- * @author Javier Anleu 17149
- *
- *
- */
-public class Nodo<E> {
-
-	private Nodo<E> izquierda;
-	private Nodo<E> derecha;
-	private Association<String, String> valor;
-
-	public Nodo(String valor) {
-		String sep = Pattern.quote(",");
-		String[] partes = valor.split(sep);
-		this.izquierda = null;
-		this.derecha = null;
-		this.valor = new Association(partes[0], partes[1]);
-	}
-
-	public Nodo<E> getIzquierda() {
-		return izquierda;
-	}
-
-	public void setIzquierda(Nodo<E> izquierda) {
-		this.izquierda = izquierda;
-	}
-
-	public Nodo<E> getDerecha() {
-		return derecha;
-	}
-
-	public void setDerecha(Nodo<E> derecha) {
-		this.derecha = derecha;
-	}
-
-	public Association getValor() {
-		return valor;
-	}
-
-	public void setValor(Association valor) {
-		this.valor = valor;
-	}
-=======
  * @Date 19/03/18
  * @author Javier Anleu
  * @author Paul Belches
@@ -75,7 +30,7 @@ public class Nodo<E> {
         String[] partes = valor.split(sep);
         this.izquierda = null;
         this.derecha = null;
-        this.valor = new Association(partes[0], partes[1]);
+        this.valor = new Association<String,String>(partes[0], partes[1]);
     }
 
     /**
@@ -114,7 +69,7 @@ public class Nodo<E> {
      *
      * @return
      */
-    public Association  getValor() {
+    public Association<String,String>  getValor() {
         return valor;
     }
 
@@ -122,9 +77,9 @@ public class Nodo<E> {
      *
      * @param valor
      */
-    public void setValor(Association  valor) {
+    public void setValor(Association<String,String>  valor) {
         this.valor = valor;
     }
->>>>>>> master
+
 
 }

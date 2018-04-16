@@ -2,6 +2,8 @@ package hdt7;
 
 import static org.junit.Assert.*;
 
+import java.io.FileNotFoundException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,7 +21,7 @@ public class Tests {
 	}
 
 	@Test
-	public void testBuscar() {
+	public void testBuscar() throws FileNotFoundException {
 		Diccionario diccionario = new Diccionario();
 		String[] words = new String[6];
 		words[0] = "house";
@@ -43,12 +45,13 @@ public class Tests {
 	}
 
 	@Test
-	public void testInsert() {
+	public void testInsert() throws FileNotFoundException {
 		Diccionario diccionario = new Diccionario();
+		@SuppressWarnings("unused")
 		String test = "";
 		String valor = "test";
 		diccionario.insertar(valor, diccionario.getRaiz());
-		String result = diccionario.getRaiz().getValor().getKey();
+		String result = (String) diccionario.getRaiz().getValor().getKey();
 		assertEquals("intento", valor, result);
 
 	}

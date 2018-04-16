@@ -9,13 +9,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.regex.Pattern;
 
 /**
-<<<<<<< HEAD
  * Main del programa
  * 
  * @author Paul Belches - 17088
@@ -26,8 +23,9 @@ public class HDT7 {
 	/**
 	 * @param args
 	 *            the command line arguments
+	 * @throws FileNotFoundException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		Diccionario diccionario = new Diccionario();
 		Map<String, String> mapa = diccionario.coleccion(new TreeMap<String, String>(), diccionario.getRaiz());
 		// Coleccion
@@ -51,7 +49,6 @@ public class HDT7 {
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.err.println("Se produjo un error:" + e);
 		}
@@ -72,29 +69,4 @@ public class HDT7 {
 	}
 
 }
-=======
- * @Date 19/03/18
- * @author Javier Anleu
- * @author Paul Belches
- * 
- */
-public class HDT7 {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Diccionario diccionario = new Diccionario();
-        Map<String,String> mapa = diccionario.coleccion(new TreeMap<String,String>(), diccionario.getRaiz());
-        //Coleccion
-        for (Map.Entry<String, String> entry : mapa.entrySet()) {
-            System.out.println("(" + entry.getKey() + "," + entry.getValue() + ")");
-        }
-        //Buscar
-        System.out.println(diccionario.Buscar("Dog", diccionario.getRaiz()));
-        System.out.println(diccionario.Buscar("yes", diccionario.getRaiz()));
-        System.out.println(diccionario.Buscar("dog", diccionario.getRaiz()));
-    }
-    
-}
->>>>>>> master

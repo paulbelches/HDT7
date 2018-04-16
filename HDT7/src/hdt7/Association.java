@@ -18,37 +18,7 @@ import java.util.Map;
 public class Association<K, V> implements Map.Entry<K, V> {
 	protected K key;
 	protected V value;
-=======
-/**
- * @Date 19/03/18
- * @author Javier Anleu
- * @author Paul Belches
- * 
- * @param <K>
- * @param <V>
- */
-public class Association<K,V> implements Map.Entry<K,V> {
 
-    /**
-     *
-     */
-    protected K key;
-
-    /**
-     *
-     */
-    protected V value;
-
-    /**
-     *
-     * @param key
-     * @param value
-     */
-    public Association(K key, V value){
-        this.key = key;
-        this.value = value;
-    }
->>>>>>> master
 
 	public Association(K key, V value) {
 		this.key = key;
